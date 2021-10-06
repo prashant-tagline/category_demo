@@ -5,8 +5,7 @@
   <div class="dropdown-menu" aria-labelledby="navbarDropdown">
     {% for sub_cat in sub_categories %}
     {% if category.id == sub_cat.parent_category.id %}
-    <a class="dropdown-item" href="{% url 'items' sub_cat.slug %}">{{ sub_cat.category}}</a>
-
+    <a class="dropdown-item" href="{% url 'items' sub_cat.slug  %}">{{ sub_cat.category}}</a>
     {% endif %}
     {% endfor %}
   </div>

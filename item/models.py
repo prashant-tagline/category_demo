@@ -23,10 +23,10 @@ class SubCategory(Category):
     class Meta:
         proxy = True
         verbose_name = 'SubCategory'
-        verbose_name_plural = 'SubCategories'
+        verbose_name_plural = 'SubCategories'    
 
     def __str__(self):
-        return self.category.upper() 
+        return self.category
 
 class Item(models.Model):
     item_url = models.URLField(max_length = 200)

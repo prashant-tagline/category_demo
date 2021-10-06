@@ -12,11 +12,6 @@ def get_subcategory(request):
     result = list(SubCategory.objects.exclude(parent_category_id__isnull=True).values('id', 'category'))
     return HttpResponse(json.dumps(result), content_type="application/json")
 
-def get_category(request):
-    '''return all sub-categories'''
-    result = list(Category.objects.filter(parent_category_id__isnull=True).values('id', 'category'))
-    return HttpResponse(json.dumps(result), content_type="application/json")
-
 
 class Home(TemplateView):
     '''
@@ -32,10 +27,8 @@ class ItemListView(ListView):
     template_name = 'items/items.html'
     model = Item    
     def get_context_data(self,**kwargs):
-        context = super().get_context_data(**kwargs)
-        print('--------------------------------------------------')
-        print(self.kwargs['sub_category'])
-        items = Item.objects.filter(sub_category__slug=self.kwargs['sub_category'])
+        context = super().get_context_data(**kwargs)        
+        items = Item.objects.filter(sub_category__slug=self.kwargs['slug'].lower())
         video_urls = []
         image_urls = []
         url = ''
