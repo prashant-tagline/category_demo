@@ -1,0 +1,14 @@
+{% for category in categories %}
+<li class="nav-item dropdown">
+  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+    aria-haspopup="true" aria-expanded="false">{{ category.category}}</a>
+  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    {% for sub_cat in sub_categories %}
+    {% if category.id == sub_cat.parent_category.id %}
+    <a class="dropdown-item" href="{% url 'items' sub_cat.slug %}">{{ sub_cat.category}}</a>
+
+    {% endif %}
+    {% endfor %}
+  </div>
+</li>
+{% endfor %}
